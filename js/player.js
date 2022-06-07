@@ -14,6 +14,15 @@ class Player {
         this.g = 0.2
 
         this.color = color
+
+        this.direction = 'left'
+//bubbles
+       // this.thick = 0;
+        
+        this.bubbles = [];
+        //this.direction = 'left'
+
+        //this.score = new Score(ctx);
         
     }
 
@@ -34,6 +43,12 @@ class Player {
         
         // Restore previous color - black default
         this.ctx.fillStyle = prevColor
+
+//Bubble shot        
+        this.bubbles.forEach((bubble) => {
+            bubble.draw();
+          });
+          
     }
 
     move() {
@@ -56,24 +71,66 @@ class Player {
             this.vx = 0;
         }
 
+       
+//Bubbles
+        this.bubbles.forEach((bubble) => {
+            bubble.move();
+          });
+      
+          this.bubbles = this.bubbles.filter((b) => b.isVisible());
     }
 
+// hit golpe    
+   /* hit(){
+        this.score.dec()
+    }
+
+    isAlive(){
+        return this.score.total > 0;
+    }*/
+
     keyDown(key) {
+        if (key === KEY_UP && this.vy === 0){
+            this.vy = -10;
+        }
+        
         if (key === KEY_RIGHT) {
+            this.direction = 'right'
             this.vx = 5    
         }
         if (key === KEY_LEFT) {
+            this.direction = 'left'
             this.vx = -5
         }
-
-        if (key === KEY_UP && this.vy === 0){
-            this.vy = -10;
+        if (key === KEY_Z) {
+            this.shoot();
         }
     }
 
     keyUp(key) {
         if (key === KEY_RIGHT || KEY_LEFT){
-            this.vx =0;
+            this.vx = 0;
         }
     }
+
+    shoot() {
+        const bullet = new Bubble(
+          this.ctx,
+          this.x + this.w + 5,
+          this.y + this.h - 25,
+            this
+        );
+            
+        if(this.direction === 'right'){
+            bullet.vx = 6
+            bullet.vy = 0
+        }
+
+        if (this.direction === 'left') {
+            bullet.vx = -6
+            bullet.vy = 0
+        }
+
+        this.bubbles.push(bullet);
+      }
 }
