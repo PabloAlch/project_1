@@ -3,7 +3,8 @@ class Game {
         this.ctx = ctx;
         
 
-        //this.background = new Background(ctx);
+        this.background = new Background(ctx);
+        
         this.player = new Player(ctx);
         
         //this.enemy = new Enemy(ctx) // for clear after
@@ -58,14 +59,14 @@ class Game {
     }
 
     draw() {
-        //this.bg.draw();
+        this.background.draw();
         this.player.draw();
         this.enemies.forEach((e) => e.draw())
         }
 
     move () {
         this.player.move();
-        // se movera el bg??  -  this.bg.move();
+        this.background.move();
         this.enemies.forEach((e) => e.move());
     }
 
@@ -79,7 +80,7 @@ class Game {
             this.player.keyUp(e.keyCode);
         });
     }
- // Collisions   
+ // Collisions    - Completed
     checkCollisions() {
         this.enemies.forEach((enemy) => {
           if (enemy.collides(this.player)) {
@@ -92,27 +93,26 @@ class Game {
           //return true
         });
 
-       // bubble delete enemy
-       this.enemies.forEach(e => {
-           this.player.bubbles.forEach(b => {
-               if (b.collides(e)) { //bubble.js
-                   e.alive = false
+       // bubble delete enemy - Completed
+       this.enemies.forEach(enemy => {
+           this.player.bubbles.forEach(bubble => {
+               if (bubble.collides(enemy)) { //bubble.js
+                    enemy.alive = false
+                    bubble.alive = false
                }
            })
        })
-
-     //PENDIENTE DE PRUEBAS!!
-       //enemy delete bubble
-      /* this.player.bubbles.forEach(b => {
-            this.enemies.forEach(e => {
-                if (e.collides(b)){
-                    b.alive = false
-                }
+// Bubble no colisiona con enemigo
+       this.player.bubbles.forEach(bubble => {
+           if (this.player.bubble > 100){
+                bubble.alive = false
+           }
             })
+    }
+       
+ 
 
-       })
-    }*/
-      }
+      
 
       
 
@@ -124,9 +124,9 @@ class Game {
     
     this.stop();
 
-    this.ctx.font = '60px Arial'
+    this.ctx.font = '80px Arial'
     this.ctx.fillText(
-        "GAME OVER", 
+        "GAME OVER!!", 
         this.ctx.canvas.width * 0.3, 
         this.ctx.canvas.height / 2);
 

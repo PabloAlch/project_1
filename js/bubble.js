@@ -1,5 +1,5 @@
 class Bubble {
-    constructor(ctx, x, y, player){
+    constructor(ctx, x, y, player, color = 'green'){
         this.ctx = ctx;
         this.x = x;
         this.y = y;
@@ -10,8 +10,10 @@ class Bubble {
         this.vy = 0;
         this.player = player
 
-        this.alive = true //prueba
+        this.alive = true //prueba ////////////////
         // new Audio('').play();
+
+        this.color = color
     }
 
     draw() {
@@ -25,9 +27,14 @@ class Bubble {
         this.vy += this.g;
         this.x += this.vx;
         if(this.x >= this.player.x + 200){
-            this.vx = 0
-            this.g = -0.05
+           
+            this.alive = false
         }
+
+        if(this.x <= this.player.x - 200){
+            this.alive = false
+        }
+
 
         this.y += this.vy;
     }
@@ -39,7 +46,7 @@ class Bubble {
         return colX && colY
     }
 
-// Part  'this.alive &&' es prueba
+// Part  'this.alive &&' es prueba//////////////////
     isVisible(){
         return this.alive && this.x + this.r < this.ctx.canvas.width;
     }
