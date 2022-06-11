@@ -19,6 +19,9 @@ class Game {
         //this.audio = new Audio("..")
         //this.audio.loop = true
         //this.gameOverAudio = new Audio("..")+
+        
+        //SCORE
+        this.score = new Score(ctx);
       
     }       
 
@@ -58,9 +61,10 @@ class Game {
     }
 
     draw() {
-        this.background.draw();
+        //this.background.draw();
         this.player.draw();
         this.enemies.forEach((e) => e.draw())
+        this.score.draw();
         }
 
     move () {
@@ -98,18 +102,34 @@ class Game {
                if (bubble.collides(enemy)) { //bubble.js
                     enemy.alive = false
                     bubble.alive = false
+                    this.updateScore()
                }
            })
        })
-// Bubble no colisiona con enemigo
-       this.player.bubbles.forEach(bubble => {
+//EJEMPLO ENEMIGO 2  O 3 
+       /* this.enemies.forEach(enemy => {
+           this.player.bubbles.forEach(bubble => {
+               if (bubble.collides(enemy)) { //bubble.js
+                    enemy.alive = false
+                    bubble.alive = false
+               }
+           })
+       })*/
+
+
+       // Bubble no colisiona con enemigo // Quizas no funciona
+      /* this.player.bubbles.forEach(bubble => {
            if (this.player.bubble > 100){
                 bubble.alive = false
            }
-            })
+            })*/
     }
        
- 
+    updateScore(){
+        this.score.value += 80
+      }
+
+
     gameOver() {
     
     //this.gameOverAudio.play();

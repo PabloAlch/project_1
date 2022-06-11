@@ -1,4 +1,4 @@
-class EnemyThree {
+class EnemyThree { // copia de mario enemigo cae del cielo
     constructor(ctx) {
       this.ctx = ctx;
   
