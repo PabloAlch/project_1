@@ -17,17 +17,36 @@ body {
 }
 
 canvas {
+
     border: 1px solid white;
     margin: 100px auto 50px auto;
     display: block;
+   
 }
 
 div{
     text-align: center;
 }
+#alldiv {
+    display: flex;
+    justify-content: center;
+    
+}
 
-button {
+#btn {
     padding: 10px 15px;
     font-weight: bold;
+    letter-spacing: 2px;
+}
+#canvas-game {
+    display: none;
+    position: relative;
+}
+
+#play {
+    margin-top: 100px;
+    padding: 20px 30px;
+    font-weight: bolder;
+    font-size: 40px;
     letter-spacing: 2px;
 }
