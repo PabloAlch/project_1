@@ -14,18 +14,30 @@ class Enemy {
         this.g = 0.2
  // collides bubble with enemy 
         this.alive = true
+//image
+        this.img = new Image();
+        this.img.frames = 2;
+        this.img.frameIndex = 0;
+        this.img.src = '/img/roboto.png'
+        
+  
+        this.tick = 0;
     }
 
     draw() {
-        const prevStyle = this.ctx.fillStyle
-        this.ctx.fillStyle = 'gray'
-         this.ctx.fillRect(
+        this.ctx.drawImage(
+            this.img,
+           (this.img.width * this.img.frameIndex) / this.img.frames , 
+            0, 
+           
+            this.img.width / 2, 
+            this.img.height,
             this.x,
             this.y,
             this.w,
             this.h
-        )
-        this.ctx.fillStyle = prevStyle
+         );
+        
     }
 
     move() {
@@ -39,6 +51,18 @@ class Enemy {
             this.y = this.ctx.canvas.height* 0.9 - this.h;
             this.vy = 0;
         }
+
+        this.tick++;
+
+        if (this.tick > 10) {
+            this.tick = 0;
+           
+             this.img.frameIndex++;
+       
+             if (this.img.frameIndex >= this.img.frames) {
+               this.img.frameIndex = 0;
+             }
+           }
     }
 // collides bubble with enemy part A
     isVisible() {

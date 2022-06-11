@@ -19,8 +19,7 @@ class Game {
         //this.audio = new Audio("..")
         //this.audio.loop = true
         //this.gameOverAudio = new Audio("..")+
-
-        
+      
     }       
 
     start() {
@@ -111,13 +110,6 @@ class Game {
     }
        
  
-
-      
-
-      
-
-    
-
     gameOver() {
     
     //this.gameOverAudio.play();

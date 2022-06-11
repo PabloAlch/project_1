@@ -4,7 +4,14 @@ html, body {
 }
 
 body {
-    background: white;
+    background-image: url('/img/background-canvas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#score{
+    background-color: black;
+    display: flex;
 }
 
 canvas {

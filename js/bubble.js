@@ -1,26 +1,52 @@
 class Bubble {
-    constructor(ctx, x, y, player, color = 'green'){
+    constructor(ctx, x, y, player){
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.r = 18;
         this.g = 0;
 
+
         this.vx = 8;
         this.vy = 0;
         this.player = player
 
-        this.alive = true //prueba ////////////////
+        this.alive = true 
         // new Audio('').play();
 
-        this.color = color
+
+        //image
+        this.w = 50
+        this.h = 50
+        this.img = new Image();
+        this.img.frames = 5;
+        this.img.frameIndex = 0;
+        this.img.src = '/img/bubble.png'
+        
+  
+        this.tick = 0;
     }
 
     draw() {
-        this.ctx.beginPath();
+        
+//image        
+        this.ctx.drawImage(
+            this.img,
+           (this.img.width * this.img.frameIndex) / this.img.frames , 
+            0, 
+           
+            this.img.width / 5, 
+            this.img.height,
+            this.x,
+            this.y-25,
+            this.w,
+            this.h
+         );
+
+       /*this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
         this.ctx.fill();
-        this.ctx.closePath();
+        this.ctx.closePath();*/
     }
 
     move() {
@@ -37,6 +63,18 @@ class Bubble {
 
 
         this.y += this.vy;
+//image
+        this.tick++;
+
+        if (this.tick > 5) {//speed frames per second
+            this.tick = 0;
+           
+             this.img.frameIndex++;
+       
+             if (this.img.frameIndex >= this.img.frames) {
+               this.img.frameIndex = 0;
+             }
+           }
     }
 
 // collides bubble with enemy

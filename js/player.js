@@ -8,7 +8,7 @@ class Player {
     this.vx = 0;
     this.vy = 0;
 
-    this.w = 40;
+    this.w = 50;
     this.h = 50;
 
     this.g = 0.2;
@@ -26,11 +26,18 @@ class Player {
 
     //this.score = new Score(ctx);
 
+//image when walk 
     this.playerImage = new Image();
-    this.playerImage.frames = 3;
+    this.playerImage.frames = 2;
     this.playerImage.frameIndex = 0;
 
     this.playerImage.src = "/img/dragoncillo.png";
+// when pull shoot ////// pruebasss
+    this.playerImageShoot = new Image();
+    this.playerImageShoot.frames = 2;
+    this.playerImageShoot.frameIndex = 0;
+
+    this.playerImageShoot.src = "/img/roboto.png";
   }
 
   draw() {
@@ -39,30 +46,17 @@ class Player {
       (this.playerImage.frameIndex * this.playerImage.width) /
         this.playerImage.frames,
       0,
-      this.playerImage.width / 3, //modificar aca sprites
+      this.playerImage.width / 2, //modificar aca sprites
       this.playerImage.height, // modificar aca srites
       this.x,
       this.y,
       this.w,
       this.h
-    );
 
-    /*  // save previous color -black default
-        const prevColor = this.ctx.fillStyle
-        
-        //switch to instance color -red
-        this.ctx.fillStyle = this.color
-
-        // switch to instance color
-        this.ctx.fillRect(
-            this.x,
-            this.y,
-            this.w,
-            this.h
-        )
-        
-        // Restore previous color - black default
-        this.ctx.fillStyle = prevColor*/
+      
+      );
+      //pruebass
+     
 
     //Bubble shot
     this.bubbles.forEach((bubble) => {
@@ -126,6 +120,7 @@ class Player {
         this.playerImage.frameIndex = 0;
       }
     }
+    
   }
 
   keyDown(key) {
@@ -136,26 +131,48 @@ class Player {
     if (key === KEY_RIGHT) {
       this.direction = "right";
       this.vx = 5;
+      this.playerImage.src = "/img/dragoncillo.png"
     }
     if (key === KEY_LEFT) {
       this.direction = "left";
       this.vx = -5;
+      this.playerImage.src = "/img/dragoncillo-2.png"
+      
     }
     if (key === KEY_Z) {
       this.shoot();
+      if(this.direction === "right"){
+
+          this.playerImage.src = "/img/shoot.png"
+      }
+      if(this.direction === "left"){
+
+        this.playerImage.src = "/img/shoot-left.png"
     }
+    }
+
+   
   }
 
   keyUp(key) {
     if (key === KEY_RIGHT || KEY_LEFT) {
       this.vx = 0;
+      
+      
     }
+  
+    if (key === KEY_Z) {
+        
+        this.playerImage.src = "/img/dragoncillo.png"
+      }
+   
+    
   }
 
   shoot() {
     const bullet = new Bubble(
       this.ctx,
-      this.x + this.w + 5,
+      this.x + this.w -30,
       this.y + this.h - 25,
       this
     );
@@ -166,8 +183,10 @@ class Player {
     }
 
     if (this.direction === "left") {
+      bullet.x = this.x -30
       bullet.vx = -6;
       bullet.vy = 0;
+
     }
 
     this.bubbles.push(bullet);
