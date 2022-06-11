@@ -70,7 +70,7 @@ class Enemy {
     }
     
     collides(player) {
-    const colX = this.x < player.x + player.w && this.x + this.w > player.x;
+    const colX = this.x < player.x + player.w - 10 && this.x + this.w > player.x + 10; // distancia de colision
     const colY = this.y + this.h > player.y && this.y < player.y + player.h;
 
     return colX && colY;

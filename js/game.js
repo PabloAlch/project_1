@@ -9,6 +9,7 @@ class Game {
         
         //this.enemy = new Enemy(ctx) // for clear after
         this.enemies = [];
+        this.lifes = []; // lifes collision
 
         this.interval = null;
         
@@ -22,8 +23,12 @@ class Game {
         
         //SCORE
         this.score = new Score(ctx);
+
+        //LIFES
+        this.setUpHearts(3)
+  }
       
-    }       
+           
 
     start() {
         // this.audio.play();
@@ -61,9 +66,10 @@ class Game {
     }
 
     draw() {
-        //this.background.draw();
+        this.background.draw();
         this.player.draw();
         this.enemies.forEach((e) => e.draw())
+        this.lifes.forEach((e) => e.draw());
         this.score.draw();
         }
 
@@ -71,6 +77,7 @@ class Game {
         this.player.move();
         this.background.move();
         this.enemies.forEach((e) => e.move());
+        this.lifes.forEach((e) => e.move());
     }
 
      
@@ -87,9 +94,11 @@ class Game {
     checkCollisions() {
         this.enemies.forEach((enemy) => {
           if (enemy.collides(this.player)) {
-            console.log('colision!!!')
-            //this.player.hit();
-            this.gameOver();
+            enemy.alive = false
+            this.lifes.pop()
+            if (this.lifes.length === 0){
+                this.gameOver();
+            }
             
             //return false
           }
@@ -106,7 +115,7 @@ class Game {
                }
            })
        })
-//EJEMPLO ENEMIGO 2  O 3 
+    //EJEMPLO ENEMIGO 2  O 3 
        /* this.enemies.forEach(enemy => {
            this.player.bubbles.forEach(bubble => {
                if (bubble.collides(enemy)) { //bubble.js
@@ -128,22 +137,34 @@ class Game {
     updateScore(){
         this.score.value += 80
       }
-
-
+    //lifes
+    setUpHearts(numberOfLifes) {
+        for (let i = 1; i <= numberOfLifes; i++){
+            this.lifes.push(new Life(this.ctx, this.ctx.canvas.width - 60 * i, 20))
+        } 
+      }  
+      
     gameOver() {
     
     //this.gameOverAudio.play();
     
     this.stop();
 
-    this.ctx.font = '80px Arial'
+    this.ctx.font = '80px ArcadeClassic'
     this.ctx.fillText(
-        "GAME OVER!!", 
+        "GAME OVER", 
         this.ctx.canvas.width * 0.3, 
         this.ctx.canvas.height / 2);
+    
+        this.ctx.font = '20px ArcadeClassic'
+        this.ctx.fillText(
+            '"Press   "ENTER"   to   try   again', 
+            this.ctx.canvas.width * 0.33, 
+            this.ctx.canvas.height - 200);
 
     this.enemies = [];
     this.player = new Player(ctx);
+    this.setUpHearts(3)
     
     }
 }
