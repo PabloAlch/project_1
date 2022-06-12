@@ -156,15 +156,16 @@ class Game {
         this.ctx.canvas.width * 0.3, 
         this.ctx.canvas.height / 2);
     
-        this.ctx.font = '20px ArcadeClassic'
-        this.ctx.fillText(
-            '"Press   "ENTER"   to   try   again', 
-            this.ctx.canvas.width * 0.33, 
-            this.ctx.canvas.height - 200);
+    this.ctx.font = '20px ArcadeClassic'
+    this.ctx.fillText(
+        'Press   "BUTTON"   to   try   again', 
+        this.ctx.canvas.width * 0.33, 
+        this.ctx.canvas.height - 200);
 
     this.enemies = [];
     this.player = new Player(ctx);
     this.setUpHearts(3)
+    this.score.value = 0
     
     }
 }

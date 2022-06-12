@@ -9,7 +9,7 @@ class Background {
       this.h = this.ctx.canvas.height;
   
       this.img = new Image();
-      this.img.src = "/img/space background.jpg";
+      this.img.src = "/img/space-bg-game.png";
     }
   
     draw() {

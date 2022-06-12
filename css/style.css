@@ -1,4 +1,9 @@
 @import url('http://fonts.cdnfonts.com/css/arcade-classic');
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 
 html, body {
     margin: 0;
@@ -10,6 +15,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #score{
     background-color: black;
@@ -28,8 +36,17 @@ div{
     text-align: center;
 }
 #alldiv {
+    width: 950px;
+    height: 700px;
+    align-items: center;
+    background-image: url(/img/bg-intro.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2%;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     
 }
 
@@ -44,9 +61,15 @@ div{
 }
 
 #play {
-    margin-top: 100px;
-    padding: 20px 30px;
-    font-weight: bolder;
+    animation: blinker 2s linear infinite;
+    padding: 7px 30px;
+    font-family: 'ArcadeClassic';
+    color: white;
     font-size: 40px;
     letter-spacing: 2px;
+    background-color: transparent;
+    border-radius: 100px;
+    border-width: 6px;
+    border-color: #E8E8E8;
+    margin-bottom: 40%;
 }
