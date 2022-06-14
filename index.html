@@ -11,8 +11,15 @@
 </head>
 <body>
     <div id="alldiv">
+        <div class="window" id="window1">
+            <div id="close">
+                <a class="link" href="javascript:close()">X</a>
+            </div>
+            HOW TO PLAY
+        </div>
         <div>
             <button id="play">PLAY GAME</button> <!-- Btn Inicio de juego -->
+            <a class="btn-window" href="javascript:open()">HOW TO PLAY</a>
         </div>
         
         <div id="canvas-game">
@@ -23,7 +30,8 @@
         </div>
         
     </div>
-          
+    
+    <script src="/controls-game.js"></script>
     <script src="/js/constants.js"></script>
     <script src="/js/life.js"></script>
     <script src="/js/score.js"></script>

@@ -73,3 +73,66 @@ div{
     border-color: #E8E8E8;
     margin-bottom: 40%;
 }
+
+.window{
+    margin-bottom: 10%;
+    background-image: url(/img/how-to-play-game.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    color: transparent;
+    font-family: 'ArcadeClassic';
+    font-size: 30px;
+    width:45%;
+    height: 45%;
+    border-radius: 22px;
+    z-index: 1;
+    padding: 10px;
+    display: none;
+    position: absolute;
+
+    
+
+}
+
+#close {
+    position: absolute;
+    background-image: url(/img/icon-close.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+    right: 4px;
+    top: 4px;
+    width: 35px;
+    height: 35px;
+
+    
+    
+}
+
+.link{
+    font-style: none;
+    color: transparent;
+    width:35px;
+    height: 35px;
+}
+
+.btn-window{
+    position: absolute;
+    margin-left: 5%;
+    width: 20%;
+
+    padding: 7px 30px;
+    font-family: 'ArcadeClassic';
+    color: white;
+    font-size: 30px;
+    letter-spacing: 2px;
+    background-color: rgba(255,0,0,0.6);;
+    border-radius: 100px;
+    border-width: 6px;
+    border-color: #e8e8e8;
+    margin-bottom: 40%;
+    text-decoration: none;
+}
